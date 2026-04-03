@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: #f0f2f5;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 3px; }
+
+/* Sidebar scrollbar */
+.sidebar-scroll::-webkit-scrollbar { width: 4px; }
+.sidebar-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.25s ease;
+}
+
+/* Check buttons */
+.check-btn-pass {
+  @apply px-4 py-2 rounded-lg font-semibold text-sm transition-all border-2 bg-green-50 text-green-700 border-green-600;
+}
+.check-btn-pass:hover,
+.check-btn-pass.selected {
+  @apply bg-green-600 text-white;
+}
+
+.check-btn-fail {
+  @apply px-4 py-2 rounded-lg font-semibold text-sm transition-all border-2 bg-red-50 text-red-700 border-red-600;
+}
+.check-btn-fail:hover,
+.check-btn-fail.selected {
+  @apply bg-red-600 text-white;
+}
+
+/* Input focus ring */
+.input-base {
+  @apply w-full px-3 py-2 border border-gray-200 rounded-lg text-sm transition-all focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100;
+}
+
+/* ── Print styles ─────────────────────────────────────────── */
+.print-only { display: none; }
+
+@media print {
+  /* 화면 전용 요소 숨김 */
+  .no-print { display: none !important; }
+  aside { display: none !important; }
+  main { margin-left: 0 !important; padding: 0 !important; background: white !important; }
+  body { background: white !important; }
+
+  /* 인쇄 전용 요소 표시 */
+  .print-only { display: block !important; }
+
+  /* 페이지 여백 & 가로 방향 */
+  @page { margin: 12mm 15mm; size: A4 landscape; }
+}
