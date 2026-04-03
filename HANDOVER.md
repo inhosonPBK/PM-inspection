@@ -28,18 +28,24 @@ Backend   : Supabase (PostgreSQL + RLS)
 
 ---
 
-## 3. 전달 파일 목록
+## 3. 전달 방법 및 파일 목록
+
+### 전달 채널 요약
+
+| 전달 항목 | 방법 | 비고 |
+|-----------|------|------|
+| 전체 소스 코드 | **GitHub Collaborator 초대** | https://github.com/inhosonPBK/PM-inspection |
+| DB 스키마 및 데이터 | **Supabase 개발자 초대** | Project ID: `metbtwospxftixdzsftx` |
+| SUPABASE_ANON_KEY | **보안 채널 별도 전달** | 이메일/메신저 금지 |
+| 브릿지 서버 파일 | **현장 PC 운영용 — 통합 대상 아님** | 별도 관리 (§7 참고) |
+
+### GitHub 저장소 포함 파일
 
 ```
-pm_inspection/
-├── .env.local                  ← Supabase URL + anon key (별도 보안 전달)
+PM-inspection/
 ├── HANDOVER.md                 ← 본 문서
 ├── supabase/
 │   └── schema.sql              ← DB 전체 테이블 + RLS 정책
-├── bridge/
-│   ├── bridge_server.py        ← COM 포트 브릿지 소스
-│   ├── requirements.txt
-│   └── dist/bridge_server.exe  ← 현장 PC 설치용 실행 파일
 ├── app/                        ← Next.js 페이지들
 │   ├── daily/page.tsx          ← Daily 점검
 │   ├── monthly/page.tsx        ← Monthly 점검
@@ -55,9 +61,20 @@ pm_inspection/
     └── types.ts                ← 공통 타입 정의
 ```
 
-> **보안 별도 전달** (이메일/메신저 금지, 보안 채널로):
-> - `.env.local` 내용 (SUPABASE_URL + SUPABASE_ANON_KEY)
-> - Supabase 프로젝트 접근 권한
+> **주의**: `.env.local` 파일은 보안상 GitHub에 포함되지 않습니다 (`.gitignore`).
+> `SUPABASE_ANON_KEY`는 별도 보안 채널로 전달하세요.
+
+### 브릿지 서버 파일 (통합 대상 제외)
+
+```
+bridge/
+├── bridge_server.py        ← COM 포트 브릿지 소스 (현장 유지보수용)
+├── requirements.txt
+└── dist/bridge_server.exe  ← 현장 PC 설치용 실행 파일
+```
+
+> 브릿지 서버는 현장 PC에서 독립 실행되는 로컬 프로세스로,
+> 통합 대시보드 코드베이스와 무관하게 현장에서 별도 운영됩니다 (§7 참고).
 
 ---
 
